@@ -1,9 +1,19 @@
 import express, { Express, Request, Response } from "express"
-import db from './db'
+import db from './db.js'
 import dotenv from "dotenv";
 dotenv.config();
+
+import { ApolloServer, gql } from 'apollo-server-express';
+import typeDefs from './graphql/typeDefs.js'
+import resolvers from './graphql/resolvers.js'
+
+
+const server = new ApolloServer({ typeDefs, resolvers });
+await server.start();
+
   
 const app: Express = express(); 
+server.applyMiddleware({app})
 const PORT = process.env.PORT || 3000; 
 
 
@@ -24,6 +34,6 @@ app.get('/', (req: Request, res: Response) => {
 });
   
 app.listen(PORT, () => { 
-    console.log("Server is Successfully Running, and App is listening on port "+ PORT) 
-    } 
+    console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+  } 
 ); 

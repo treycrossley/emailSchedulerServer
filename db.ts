@@ -1,6 +1,6 @@
-import { Pool, QueryArrayConfig } from 'pg';
+import pg from 'pg';
 
-const pool = new Pool({
+const pool = new pg.Pool({
     user: 'postgres',
     password: '1234',
     host: 'localhost',
