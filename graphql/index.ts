@@ -1,4 +1,4 @@
-import Mutation from './mutations'
+import Mutation from './mutations/Mutation'
 import Query from './Query'
 
 export const typeDefs = [...Query.typeDefs, ...Mutation.typeDefs]

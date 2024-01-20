@@ -1,3 +1,5 @@
+import addUser from './addUser'
+
 const books = [
     {
         title: 'The Awakening',
@@ -18,19 +20,22 @@ export const typeDefs = [
     message: String
   }
   type Mutation {
-    addBook: addBookResponse
+    addBook(title: String!, author: String): addBookResponse
   }
 `,
+    addUser.typeDef,
 ]
 
 export const resolvers = {
-    addBook: () => {
+    addBook: (_: any, args: any) => {
+        console.log(args)
         return {
             code: 200,
             success: true,
             message: 'succesfully pushed book',
         }
     },
+    ...addUser.resolvers,
 }
 
 export default {

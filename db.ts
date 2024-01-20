@@ -1,6 +1,6 @@
-import pg from 'pg'
+import pg, { QueryConfig } from 'pg'
 
-const pool = new pg.Pool({
+export const db = new pg.Pool({
     user: 'postgres',
     password: '1234',
     host: 'localhost',
@@ -8,4 +8,25 @@ const pool = new pg.Pool({
     database: 'postgres',
 })
 
-export default pool
+export const tryQuery = async (query: QueryConfig, opName: String) => {
+    try {
+        const result = await db.query(query)
+        return {
+            code: 200,
+            success: true,
+            message: `${opName} operation succeeded`,
+        }
+    } catch (err) {
+        console.error(err)
+        return {
+            code: 500,
+            success: false,
+            message: `${opName} operation failed`,
+        }
+    }
+}
+
+export default {
+    db,
+    tryQuery,
+}
