@@ -11,18 +11,10 @@ export const db = new pg.Pool({
 export const tryQuery = async (query: QueryConfig, opName: String) => {
     try {
         const result = await db.query(query)
-        return {
-            code: 200,
-            success: true,
-            message: `${opName} operation succeeded`,
-        }
+        return result
     } catch (err) {
         console.error(err)
-        return {
-            code: 500,
-            success: false,
-            message: `${opName} operation failed`,
-        }
+        return err
     }
 }
 

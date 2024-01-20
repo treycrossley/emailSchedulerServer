@@ -1,5 +1,6 @@
 import { gql } from 'apollo-server-express'
 import { db, tryQuery } from '../../db'
+import { gqlStatusReturn } from '../../services/status-code-service'
 
 interface addUserArgs {
     id: number
@@ -11,12 +12,7 @@ interface addUserArgs {
 export const typeDef = gql`
     extend type Mutation {
         "USER: add user to db"
-        addUser(
-            id: Int
-            firstname: String
-            lastname: String
-            age: Int
-        ): addUserResponse
+        addUser(id: Int, firstname: String, lastname: String, age: Int): addUserResponse
     }
 
     type addUserResponse {
@@ -36,7 +32,7 @@ export const resolvers = {
         }
         const res = await tryQuery(query, 'addUser')
 
-        return res
+        return gqlStatusReturn("addUser", res)
     },
 }
 

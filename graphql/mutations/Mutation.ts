@@ -1,4 +1,5 @@
 import addUser from './addUser'
+import sendEmail from './sendEmail'
 
 const books = [
     {
@@ -24,6 +25,7 @@ export const typeDefs = [
   }
 `,
     addUser.typeDef,
+    sendEmail.typeDef,
 ]
 
 export const resolvers = {
@@ -36,6 +38,7 @@ export const resolvers = {
         }
     },
     ...addUser.resolvers,
+    ...sendEmail.resolvers,
 }
 
 export default {

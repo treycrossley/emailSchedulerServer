@@ -20,10 +20,6 @@ app.get('/', (req: Request, res: Response) => {
     res.send("Welcome to chili's, I'll be your server")
 })
 
-app.get('/email', sendEmail)
-
 app.listen(PORT, () => {
-    console.log(
-        `Server is Successfully Running, and App is listening at http://localhost:${PORT}`
-    )
+    console.log(`Server is Successfully Running, and App is listening at http://localhost:${PORT}`)
 })
