@@ -1,19 +1,12 @@
-import Users from './Users'
 import Mutation from './mutations'
+import Query from './Query'
 
 export const typeDefs = [
-    `#graphql
-  type Query {
-    users: [User]
-  }
-`,
-    Users.typeDef,
-    ...Mutation.typeDefs,
+  ...Query.typeDefs,
+  ...Mutation.typeDefs,
 ]
 
 export const resolvers = {
-    Query: {
-        users: Users.resolvers.users,
-    },
+    Query: Query.resolvers,
     Mutation: Mutation.resolvers,
 }
