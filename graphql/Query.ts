@@ -10,10 +10,10 @@ const typeDefs = [
 ]
 
 const resolvers = {
-    users: Users.resolvers.users
+    ...Users.resolvers,
 }
 
 export default {
     typeDefs,
-    resolvers
+    resolvers,
 }
