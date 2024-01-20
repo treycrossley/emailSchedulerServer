@@ -1,16 +1,20 @@
-import { gql } from "apollo-server-express";
+import Users from './Users'
+import Book from './Book'
 
-// Construct a schema, using GraphQL schema language
-export const typeDefs = gql`
+export const typeDefs = [`#graphql
   type Query {
-    hello: String
+    books: [Book]
+    users: Users
   }
-`;
+`,
+  Users.typeDef,
+  Book.typeDef
+];
 
-// Provide resolver functions for your schema fields
+
 export const resolvers = {
-    Query: {
-      hello: () => 'Hello world!',
-    },
+  Query: {
+    books: Book.resolvers.books,
+    users: Users.resolvers.users
+  },
 };
-  
