@@ -1,20 +1,20 @@
-import { gql } from "apollo-server-express";
+import { gql } from 'apollo-server-express'
 
 const users = {
-  firstname: "sidney",
-};
+    firstname: 'sidney',
+}
 
 export const typeDef = gql`
-  type Users {
-    firstname: String
-  }
-`;
+    type Users {
+        firstname: String
+    }
+`
 
 export const resolvers = {
-  users: () => users,
-};
+    users: () => users,
+}
 
 export default {
-  typeDef,
-  resolvers,
-};
+    typeDef,
+    resolvers,
+}
