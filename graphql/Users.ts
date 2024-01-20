@@ -1,10 +1,6 @@
 import { gql } from 'apollo-server-express'
 import db from '../db'
 
-const users = {
-    firstname: 'sidney',
-}
-
 const getUsers = async () => {
     const result = await db.query('SELECT * FROM users');
     return result.rows
