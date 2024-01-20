@@ -1,5 +1,4 @@
 import nodemailer from 'nodemailer'
-import { Request, Response } from 'express'
 import dotenv from 'dotenv'
 import { Attachment } from 'nodemailer/lib/mailer'
 

@@ -1,5 +1,5 @@
 import { gql } from 'apollo-server-express'
-import { db, tryQuery } from '../../db'
+import { db, tryQuery } from '../../services/database-service'
 import { gqlStatusReturn } from '../../services/status-code-service'
 
 interface addUserArgs {
