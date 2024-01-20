@@ -1,4 +1,5 @@
 import Users from './Users'
+import Mutation from './mutations'
 
 export const typeDefs = [
     `#graphql
@@ -7,10 +8,12 @@ export const typeDefs = [
   }
 `,
     Users.typeDef,
+    ...Mutation.typeDefs,
 ]
 
 export const resolvers = {
     Query: {
         users: Users.resolvers.users,
     },
+    Mutation: Mutation.resolvers,
 }

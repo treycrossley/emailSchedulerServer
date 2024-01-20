@@ -1,6 +1,6 @@
 import { ApolloServer } from 'apollo-server-express'
 import dotenv from 'dotenv'
-import { typeDefs, resolvers } from './graphql/resolvers'
+import { typeDefs, resolvers } from './graphql'
 import express, { Express, Request, Response } from 'express'
 import { sendEmail } from './services/email-service'
 
