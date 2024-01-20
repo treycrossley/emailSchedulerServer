@@ -24,6 +24,7 @@ export const sendEmail = async (
     recipient: string = senderEmail,
     subject: string = sampleSubject,
     text: string = sampleText,
+    html: string = `<p>${text}</p>`,
     attachments: Array<Attachment> = []
 ) => {
     const mailOptions = {
@@ -31,6 +32,7 @@ export const sendEmail = async (
         to: recipient,
         subject: subject,
         text: text,
+        html: html,
         attachments: attachments,
     }
     try {
