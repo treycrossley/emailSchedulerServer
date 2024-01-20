@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-express'
 import db from '../db'
 
 const getUsers = async () => {
-    const result = await db.query('SELECT * FROM users');
+    const result = await db.query('SELECT * FROM users')
     return result.rows
 }
 
@@ -16,7 +16,7 @@ export const typeDef = gql`
 `
 
 export const resolvers = {
-    users: getUsers
+    users: getUsers,
 }
 
 export default {
