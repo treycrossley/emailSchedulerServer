@@ -1,7 +1,7 @@
-import { ApolloServer } from '@apollo/server';
-import { startStandaloneServer } from '@apollo/server/standalone';
-import dotenv from "dotenv"
-import {typeDefs, resolvers} from './graphql/resolvers'
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
+import dotenv from "dotenv";
+import { typeDefs, resolvers } from "./graphql/resolvers";
 
 dotenv.config();
 
