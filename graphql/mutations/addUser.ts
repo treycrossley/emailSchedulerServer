@@ -32,7 +32,7 @@ export const resolvers = {
         }
         const res = await tryQuery(query, 'addUser')
 
-        return gqlStatusReturn("addUser", res)
+        return gqlStatusReturn('addUser', res)
     },
 }
 

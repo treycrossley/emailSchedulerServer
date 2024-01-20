@@ -1,27 +1,10 @@
 import addUser from './addUser'
 import sendEmail from './sendEmail'
 
-const books = [
-    {
-        title: 'The Awakening',
-        author: 'Kate Chopin',
-    },
-    {
-        title: 'City of Glass',
-        author: 'Paul Auster',
-    },
-]
-
 export const typeDefs = [
     `#graphql
-
-  type addBookResponse {
-    code: Int
-    success: Boolean
-    message: String
-  }
   type Mutation {
-    addBook(title: String!, author: String): addBookResponse
+    filler: String
   }
 `,
     addUser.typeDef,
@@ -29,14 +12,7 @@ export const typeDefs = [
 ]
 
 export const resolvers = {
-    addBook: (_: any, args: any) => {
-        console.log(args)
-        return {
-            code: 200,
-            success: true,
-            message: 'succesfully pushed book',
-        }
-    },
+    filler: () => 'hello world',
     ...addUser.resolvers,
     ...sendEmail.resolvers,
 }

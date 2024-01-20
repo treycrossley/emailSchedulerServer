@@ -1,4 +1,4 @@
-export const gqlStatusReturn = (opName: string = "", err: any) => {
+export const gqlStatusReturn = (opName: string = '', err: any) => {
     if (err instanceof Error) {
         return {
             code: 500,
@@ -6,10 +6,9 @@ export const gqlStatusReturn = (opName: string = "", err: any) => {
             message: `${opName} operation failed`,
         }
     }
-     return {
-            code: 200,
-            success: true,
-            message: `${opName} operation succeeded`,
-        }
-
+    return {
+        code: 200,
+        success: true,
+        message: `${opName} operation succeeded`,
+    }
 }
