@@ -28,7 +28,7 @@ export const sendEmail = async (
 ) => {
     const mailOptions = {
         from: senderEmail,
-        to: recipient,
+        to: recipient.trim(),
         subject: subject,
         text: text,
         html: html,

@@ -13,7 +13,9 @@ const server = new ApolloServer({
     resolvers,
 })
 await server.start()
-server.applyMiddleware({app})
+server.applyMiddleware({app, bodyParserConfig: {
+    limit:"15mb"
+  }})
 const PORT = Number(process.env.PORT ?? 4000)
 
 app.get('/', (req: Request, res: Response) => {
