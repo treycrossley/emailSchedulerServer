@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-express'
 import { db, tryQuery } from '../../services/database-service'
 import { gqlStatusReturn } from '../../services/status-code-service'
 
-interface addGroupArgs {
+interface groupArgs {
     id: number
     recipients: String
     name: String
@@ -18,11 +18,13 @@ export const typeDef = gql`
         addGroup(id: UUID, recipients: String, name: String): response
         "Group: delete emailgroup from db"
         deleteGroup(id: UUID): response
+        "Group: update group in db"
+        updateGroup(id: UUID, recipients: String, name: String): response
     }
 `
 
 export const resolvers = {
-    addGroup: async (_: any, args: addGroupArgs) => {
+    addGroup: async (_: any, args: groupArgs) => {
         const keys = Object.keys(args).join(', ')
         const values = Object.values(args)
         const query = {
@@ -41,8 +43,17 @@ export const resolvers = {
         }
         const res = await tryQuery(query)
 
-        return gqlStatusReturn('dleteGroup', res)
+        return gqlStatusReturn('deleteGroup', res)
     },
+    updateGroup: async (_: any, args: groupArgs) => {
+        const value = [args.recipients, args.name, args.id]
+        const query = {
+            text: `UPDATE email_groups SET recipients=$1, name=$2 where id=$3`,
+            values: value,
+        }
+        const res = await tryQuery(query)
+        return gqlStatusReturn('updateGroup', res)
+    }
 }
 
 export default {
