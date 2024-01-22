@@ -7,10 +7,11 @@ interface groupArgs {
     id?: string
     recipients: String
     name: String
+    identifier: String
 }
 
 interface deleteGroupArgs {
-    id?: number
+    id: string
 }
 
 export const typeDef = gql`
@@ -18,9 +19,9 @@ export const typeDef = gql`
         "Group: add email-group to db"
         addGroup(recipients: String, name: String): response
         "Group: delete emailgroup from db"
-        deleteGroup(id: UUID): response
+        deleteGroup(id: UUID!): response
         "Group: update group in db"
-        updateGroup(id: UUID, recipients: String, name: String): response
+        updateGroup(id: String, recipients: String, name: String, identifier: String): response
     }
 `
 
@@ -48,7 +49,8 @@ export const resolvers = {
         return gqlStatusReturn('deleteGroup', res)
     },
     updateGroup: async (_: any, args: groupArgs) => {
-        const value = [args.recipients, args.name, args.id]
+        console.log(args)
+        const value = [args.recipients, args.name, args.identifier]
         const query = {
             text: `UPDATE email_groups SET recipients=$1, name=$2 where id=$3`,
             values: value,
