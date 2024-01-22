@@ -11,7 +11,6 @@ interface sendEmailArgs {
     attachments?: Array<Attachment>
 }
 
-
 export const typeDef = gql`
     extend type Mutation {
         "EMAIL: send an email"
@@ -40,15 +39,18 @@ export const typeDef = gql`
 export const resolvers = {
     sendEmail: async (_: any, args: sendEmailArgs) => {
         const { recipient, subject, text, html, attachments } = args
-        
+
         let files: Attachment[] = []
-        attachments?.forEach(attachment => {
-            files.push({ filename: attachment.filename, path: attachment.path, encoding: attachment.encoding })
-        });    
-        
+        attachments?.forEach((attachment) => {
+            files.push({
+                filename: attachment.filename,
+                path: attachment.path,
+                encoding: attachment.encoding,
+            })
+        })
+
         const result = await sendEmail(recipient, subject, text, html, files)
         return gqlStatusReturn('sendEmail', result)
-
     },
 }
 

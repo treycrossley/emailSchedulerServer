@@ -1,5 +1,6 @@
 import addUser from './addUser'
 import sendEmail from './sendEmail'
+import addGroup from './addGroup'
 
 export const typeDefs = [
     `#graphql
@@ -9,12 +10,14 @@ export const typeDefs = [
 `,
     addUser.typeDef,
     sendEmail.typeDef,
+    addGroup.typeDef,
 ]
 
 export const resolvers = {
     filler: () => 'hello world',
     ...addUser.resolvers,
     ...sendEmail.resolvers,
+    ...addGroup.resolvers,
 }
 
 export default {
