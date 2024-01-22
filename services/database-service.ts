@@ -8,7 +8,7 @@ export const db = new pg.Pool({
     database: 'postgres',
 })
 
-export const tryQuery = async (query: QueryConfig, opName: String) => {
+export const tryQuery = async (query: QueryConfig) => {
     try {
         const result = await db.query(query)
         return result

@@ -12,13 +12,7 @@ interface addUserArgs {
 export const typeDef = gql`
     extend type Mutation {
         "USER: add user to db"
-        addUser(id: Int, firstname: String, lastname: String, age: Int): addUserResponse
-    }
-
-    type addUserResponse {
-        code: Int
-        success: Boolean
-        message: String
+        addUser(id: Int, firstname: String, lastname: String, age: Int): response
     }
 `
 
@@ -30,7 +24,7 @@ export const resolvers = {
             text: `INSERT INTO users(${keys}) VALUES($1, $2, $3, $4)`,
             values: values,
         }
-        const res = await tryQuery(query, 'addUser')
+        const res = await tryQuery(query)
 
         return gqlStatusReturn('addUser', res)
     },

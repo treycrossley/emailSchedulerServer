@@ -4,7 +4,7 @@ import { QueryConfig } from 'pg'
 
 const getGroups = async () => {
     const query: QueryConfig = { text: 'SELECT * FROM email_groups' }
-    const result: any = await tryQuery(query, 'getGroups')
+    const result: any = await tryQuery(query)
     return result.rows
 }
 
